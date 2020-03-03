@@ -1,0 +1,28 @@
+{
+  "name": "nips-challenge-plagiarism-detection-vsm",
+  "version": "1.0.0",
+  "description": "I implemented the paper based on the research methodology",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/albertusk95/nips-challenge-plagiarism-detection-vsm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/albertusk95/nips-challenge-plagiarism-detection-vsm/issues"
+  },
+  "homepage": "https://github.com/albertusk95/nips-challenge-plagiarism-detection-vsm#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express.js": "^1.0.0",
+    "multer": "^1.4.2"
+  }
+}
