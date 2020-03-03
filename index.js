@@ -1,5 +1,6 @@
 const path = require('path')
-const {spawn} = require('child_process')
+const {spawn} = require('child_process');
+// console.log(spawnSync)
 /**
    * Run python myscript, pass in `-u` to not buffer console output
    * @return {ChildProcess}
@@ -66,36 +67,15 @@ app.post('/uploadmultiple', deletefiles,upload.array('myFiles', 12), (req, res, 
          ]);
       }
       const subprocess = runScript()
-  // print output of script
-  subprocess.stdout.on('data', (data) => {
-     console.log(`data:${data}`);
 
-
-  });
-  subprocess.stderr.on('data', (data) => {
-     console.log(`error:${data}`);
-  });
-  subprocess.stderr.on('close', () => {
-     console.log("Closed");
+  subprocess.on('exit',(code)=>{
+      let rawdata = fs.readFileSync('./person.json')
+       let student = JSON.parse(rawdata);
+       res.send(student)
   })
-  let rawdata = fs.readFileSync('./person.json')
-   let student = JSON.parse(rawdata);
-res.redirect('/redirect');
-   console.log('i m called');
 
-
-
-
-
-
-
-   console.log('res is sent');
 })
-app.get('/redirect',(req,res)=>{
-    let rawdata = fs.readFileSync('./person.json')
-     let student = JSON.parse(rawdata);
-     setTimeout(()=>{res.send(student)},2000   );
-})
+
 app.listen(3000,()=>{
     console.log('app is running on port 3000');
 });
