@@ -1,5 +1,5 @@
 const path = require('path')
-const {spawn} = require('child_process');
+const {spawnSync} = require('child_process');
 // console.log(spawnSync)
 /**
    * Run python myscript, pass in `-u` to not buffer console output
@@ -60,19 +60,22 @@ app.post('/uploadmultiple', deletefiles,upload.array('myFiles', 12), (req, res, 
 
 
       function runScript(){
-         return spawn('python', [
+         return spawnSync('python', [
             "-u",
             path.join(__dirname, 'main.py'),
            "--foo", "some value for foo",
          ]);
       }
       const subprocess = runScript()
-
-  subprocess.on('exit',(code)=>{
+      console.log(subprocess.stdout)
       let rawdata = fs.readFileSync('./person.json')
        let student = JSON.parse(rawdata);
+       console.log('res is about to e called');
        res.send(student)
-  })
+
+  // subprocess.on('exit',(code)=>{
+  //
+  // })
 
 })
 
